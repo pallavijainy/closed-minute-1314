@@ -1,7 +1,7 @@
 import React from "react";
-import rule1 from "./pics/rule1.png"
+// import rule1 from "./pics/rule1.png"
 import "./rules.css"
-
+import gam from "./pics/cardsGame.gif"
 const Rules = () => {
   return (
     <div className="container">
@@ -11,7 +11,7 @@ const Rules = () => {
           Or you can get as close as possible without bursting</p>
         <p >if you go over 21, you lose, if the dealer has 21 or less and you have less points than the dealer, you lose.</p>
 
-        <img src={rule1} alt="" />
+        <img src={gam} alt="" />
 
         <p >the numbered cards correspond to their respective value.</p>
         <p >the cards with letters, the situation changes a little,
@@ -25,6 +25,7 @@ const Rules = () => {
         <p >but, if you still haven't exceeded, a timer will appear for you to play in up to 6 seconds, if you don't do anything, you will lose your turn (stay).</p>
 
         {/* <img src={rule2} alt="" /> */}
+        <button>HOME</button>
       </div>
 
 
