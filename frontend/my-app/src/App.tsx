@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import palData from "../db.json";
 
-import "./App.css";
-import Status from "./component/Status";
-
-function App() {
+const App: React.FC = () => {
   enum GameState {
     bet,
     init,
@@ -26,35 +24,169 @@ function App() {
     tie = "Tie!",
   }
 
-  // const data = JSON.parse(JSON.stringify(jsonData.cards));
-  // const [deck, setDeck]: any[] = useState(data);
+  //usestate made
+
+  const data = JSON.parse(JSON.stringify(palData.cards));
+  const [deck, setDeck]: any[] = useState(data);
   // console.log(deck);
+
   //user
   const [userCards, setUserCards]: any[] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const [userCount, setUserCount] = useState(0);
+
   //dealer
   const [dealerCards, setDealerCards]: any[] = useState([]);
   const [dealerScore, setDealerScore] = useState(0);
   const [dealerCount, setDealerCount] = useState(0);
+
   //balance
   const [balance, setBalance] = useState(1000);
+
+  //bet
   const [bet, setBet] = useState(0);
 
   const [gameState, setGameState] = useState(GameState.bet);
   const [message, setMessage] = useState(Message.bet);
 
+  //3 buttons
   const [buttonState, setButtonState] = useState({
     hitDisabled: false,
     standDisabled: false,
     resetDisabled: true,
   });
 
-  return (
-    <div className="App">
-      <Status message={message} balance={balance} />
-    </div>
-  );
-}
+  //initial phase m cards dene k bad userturn
+
+  useEffect(() => {
+    if (gameState === GameState.init) {
+      drawCard(Deal.user);
+      drawCard(Deal.hidden);
+      drawCard(Deal.user);
+      drawCard(Deal.dealer);
+      setGameState(GameState.userTurn);
+      setMessage(Message.hitStand);
+    }
+  }, [gameState]);
+
+  //userTurn
+
+  useEffect(() => {
+    if (gameState === GameState.userTurn) {
+      if (userScore === 21) {
+        buttonState.hitDisabled = true;
+        setButtonState({ ...buttonState });
+      } else if (userScore > 21) {
+        bust();
+      }
+    }
+  }, [userCount]);
+
+  useEffect(() => {
+    if (gameState === GameState.dealerTurn) {
+      if (dealerScore >= 17) {
+        checkWin();
+      } else {
+        //dealer ko card do
+        drawCard(Deal.dealer);
+      }
+    }
+  }, [dealerCount]);
+
+  //bet place
+
+  const placeBet = (amount: number) => {
+    setBet(amount);
+    setBalance(balance - amount);
+    setGameState(GameState.init);
+  };
+
+  //drawcards
+
+  const drawCard = (dealType: Deal) => {
+    if (deck.length > 0) {
+      const randomIndex = Math.floor(Math.random() * deck.length); //random value
+      // console.log(randomIndex);
+      const card = deck[randomIndex];
+      deck.splice(randomIndex, 1);
+      setDeck([...deck]);
+      // console.log("Remaining Cards:", deck.length);
+      switch (card.suit) {
+        case "spades":
+          dealCard(dealType, card.value, "♠️");
+          break;
+        case "diamonds":
+          dealCard(dealType, card.value, "♦");
+          break;
+        case "clubs":
+          dealCard(dealType, card.value, "♣");
+          break;
+        case "hearts":
+          dealCard(dealType, card.value, "♥");
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  //dealCard
+  const dealCard = (dealType: Deal, value: string, suit: string) => {
+    switch (dealType) {
+      case Deal.user:
+        userCards.push({ value: value, suit: suit, hidden: false });
+        setUserCards([...userCards]);
+        break;
+      case Deal.dealer:
+        dealerCards.push({ value: value, suit: suit, hidden: false });
+        setDealerCards([...dealerCards]);
+        break;
+      case Deal.hidden:
+        dealerCards.push({ value: value, suit: suit, hidden: true });
+        setDealerCards([...dealerCards]);
+        break;
+      default:
+        break;
+    }
+  };
+
+  //reveal hidden card
+
+  const revealCard = () => {
+    dealerCards.filter((el: any) => {
+      if (el.hidden === true) {
+        el.hidden = false;
+      }
+      return el;
+    });
+    setDealerCards([...dealerCards]);
+  };
+
+  //resetGame
+  const resetGame = () => {
+    console.clear();
+    setDeck(data);
+    // console.log(data);
+    setUserCards([]);
+    setUserScore(0);
+    setUserCount(0);
+
+    setDealerCards([]);
+    setDealerScore(0);
+    setDealerCount(0);
+
+    setBet(0);
+
+    setGameState(GameState.bet);
+    setMessage(Message.bet);
+    setButtonState({
+      hitDisabled: false,
+      standDisabled: false,
+      resetDisabled: true,
+    });
+  };
+
+  return <div></div>;
+};
 
 export default App;
