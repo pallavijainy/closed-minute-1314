@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import palData from "../src/db.json";
 import Controls from "./component/Controls";
 import Hand from "./component/Hand";
+
 import Status from "./component/Status";
 
 const App: React.FC = () => {
@@ -258,6 +259,7 @@ const App: React.FC = () => {
     buttonState.resetDisabled = false;
     setButtonState({ ...buttonState });
     setMessage(Message.bust);
+    alert("BUST!");
   };
 
   //check winning
@@ -265,11 +267,14 @@ const App: React.FC = () => {
     if (userScore > dealerScore || dealerScore > 21) {
       setBalance(balance + 2 * bet);
       setMessage(Message.userWin);
+      alert("You Won!");
     } else if (dealerScore > userScore) {
       setMessage(Message.dealerWin);
+      alert("Dealer Won!");
     } else {
       setBalance(balance + 1 * bet);
       setMessage(Message.tie);
+      alert("TIE");
     }
   };
   return (
