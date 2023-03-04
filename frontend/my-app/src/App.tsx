@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "./App.css";
+import Status from "./component/Status";
 
 function App() {
   enum GameState {
@@ -25,8 +26,8 @@ function App() {
     tie = "Tie!",
   }
 
-  const data = JSON.parse(JSON.stringify(jsonData.cards));
-  const [deck, setDeck]: any[] = useState(data);
+  // const data = JSON.parse(JSON.stringify(jsonData.cards));
+  // const [deck, setDeck]: any[] = useState(data);
   // console.log(deck);
   //user
   const [userCards, setUserCards]: any[] = useState([]);
@@ -49,7 +50,11 @@ function App() {
     resetDisabled: true,
   });
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Status message={message} balance={balance} />
+    </div>
+  );
 }
 
 export default App;
