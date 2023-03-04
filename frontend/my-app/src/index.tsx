@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import "./index.css";
+
 import reportWebVitals from "./reportWebVitals";
 // import {ChakraProvider} from "@chakra-ui/react"
 
@@ -10,8 +12,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 
-  
-    <App />
+  <BrowserRouter>
+  <App/>
+  </BrowserRouter>
+    
 
 
 );

@@ -1,5 +1,5 @@
 import React from "react";
-// import rule1 from "./pics/rule1.png"
+import {Link} from "react-router-dom"
 import "./rules.css"
 import gam from "./pics/cardsGame.gif"
 const Rules = () => {
@@ -25,7 +25,8 @@ const Rules = () => {
         <p >but, if you still haven't exceeded, a timer will appear for you to play in up to 6 seconds, if you don't do anything, you will lose your turn (stay).</p>
 
         {/* <img src={rule2} alt="" /> */}
-        <button>HOME</button>
+       <Link to="/"> <button>HOME</button>
+       </Link>
       </div>
 
 
