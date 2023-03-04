@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import "./homepage.css"
 const HomePage = () => {
   // function handleClick(){
@@ -16,9 +17,11 @@ const HomePage = () => {
    <button>Existing user</button>
    </div>
 
-   <div className="play">
+  <Link to="/rules">
+  <div className="play">
     <h2>How to play?</h2>
    </div>
+  </Link>
   </div>
   )
 };

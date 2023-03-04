@@ -51,9 +51,11 @@ button :hover{
 .play{
     
     margin-bottom: 20px;
-    margin: auto;
-    width: 20%;
+    text-align: center;
+    /* margin: auto;
+    width: 20%; */
     /* border: 1px solid blue; */
     color: rgb(0, 110, 255);
     text-decoration: underline;
+    cursor: pointer;
 }
