@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import palData from "../db.json";
+import palData from "../src/db.json";
+import Controls from "./component/Controls";
+import Hand from "./component/Hand";
+
+import Status from "./component/Status";
 
 const App: React.FC = () => {
   enum GameState {
@@ -186,7 +190,109 @@ const App: React.FC = () => {
     });
   };
 
-  return <div></div>;
+  //calculation of card score
+  const calculate = (cards: any[], setScore: any) => {
+    let total = 0;
+    cards.forEach((card: any) => {
+      if (card.hidden === false && card.value !== "A") {
+        switch (card.value) {
+          case "K":
+            total += 10;
+            break;
+          case "Q":
+            total += 10;
+            break;
+          case "J":
+            total += 10;
+            break;
+          default:
+            total += Number(card.value);
+            break;
+        }
+      }
+    });
+    const aces = cards.filter((card: any) => {
+      return card.value === "A";
+    });
+    aces.forEach((card: any) => {
+      if (card.hidden === false) {
+        if (total + 11 >= 21) {
+          total += 1;
+        } else {
+          total += 11;
+        }
+      }
+    });
+    setScore(total);
+  };
+
+  //call calculate
+  useEffect(() => {
+    calculate(userCards, setUserScore);
+    setUserCount(userCount + 1);
+  }, [userCards]);
+
+  useEffect(() => {
+    calculate(dealerCards, setDealerScore);
+    setDealerCount(dealerCount + 1);
+  }, [dealerCards]);
+  // hit
+  const hit = () => {
+    drawCard(Deal.user);
+  };
+
+  //stand
+
+  const stand = () => {
+    buttonState.hitDisabled = true;
+    buttonState.standDisabled = true;
+    buttonState.resetDisabled = false;
+    setButtonState({ ...buttonState });
+    setGameState(GameState.dealerTurn);
+    revealCard();
+  };
+
+  //bust
+  const bust = () => {
+    buttonState.hitDisabled = true;
+    buttonState.standDisabled = true;
+    buttonState.resetDisabled = false;
+    setButtonState({ ...buttonState });
+    setMessage(Message.bust);
+    alert("BUST!");
+  };
+
+  //check winning
+  const checkWin = () => {
+    if (userScore > dealerScore || dealerScore > 21) {
+      setBalance(balance + 2 * bet);
+      setMessage(Message.userWin);
+      alert("You Won!");
+    } else if (dealerScore > userScore) {
+      setMessage(Message.dealerWin);
+      alert("Dealer Won!");
+    } else {
+      setBalance(balance + 1 * bet);
+      setMessage(Message.tie);
+      alert("TIE");
+    }
+  };
+  return (
+    <div>
+      <Status message={message} balance={balance} />
+      <Controls
+        balance={balance}
+        gameState={gameState}
+        buttonState={buttonState}
+        betEvent={placeBet}
+        hitEvent={hit}
+        standEvent={stand}
+        resetEvent={resetGame}
+      />
+      <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
+      <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+    </div>
+  );
 };
 
 export default App;
