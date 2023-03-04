@@ -273,7 +273,7 @@ const App: React.FC = () => {
     }
   };
   return (
-    <>
+    <div>
       <Status message={message} balance={balance} />
       <Controls
         balance={balance}
@@ -284,9 +284,9 @@ const App: React.FC = () => {
         standEvent={stand}
         resetEvent={resetGame}
       />
-      {/* <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
-      <Hand title={`Your Hand (${userScore})`} cards={userCards} /> */}
-    </>
+      <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
+      <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+    </div>
   );
 };
 
