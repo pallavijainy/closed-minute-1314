@@ -3,6 +3,21 @@ import palData from "../src/db.json";
 import Controls from "./component/Controls";
 import Hand from "./component/Hand";
 
+
+import "./App.css";
+import HomePage from "./component/HomePage/HomePage";
+
+// import Rules from "./component/Rules";
+
+function App() {
+
+  return <div className="App">
+    
+    {/* <Rules/>   */}
+    <HomePage/>
+    </div>;
+}
+
 import Status from "./component/Status";
 
 const App: React.FC = () => {
@@ -294,5 +309,6 @@ const App: React.FC = () => {
     </div>
   );
 };
+
 
 export default App;

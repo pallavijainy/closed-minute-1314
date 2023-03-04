@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main{
+    background-image:url("https://cdnb.artstation.com/p/assets/images/images/042/054/237/large/hutu-games-gameart-01-hutustudio.jpg?1633453646") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+    height: 100vh;
+    z-index: -1;
+    border: 2px solid red;
+}
+.lucky{
+    color: aquamarine;
+    margin-top: 20px;
+    padding: 5px;
+    background-color: rgb(192, 86, 86);
+    width: 20%;
+   margin: auto 40% auto;
+   font-size: 20px;
+   border-radius: 5px;
+}
+.bot{
+    border: 2px solid red;
+    width: 20%;
+    height: 100px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin-top: 50px;
+    align-items: center;
+    background-color: yellowgreen;
+    opacity: 0.8;
+}
+.bot>button{
+    height: 30px;
+    padding: 5px;
+    color: rgb(226, 238, 238);
+    background-color: black;
+    
+}
+button :hover{
+    cursor:pointer
+}
+.play{
+    
+    margin-bottom: 20px;
+    margin: auto;
+    width: 20%;
+    /* border: 1px solid blue; */
+    color: rgb(0, 110, 255);
+    text-decoration: underline;
+}
