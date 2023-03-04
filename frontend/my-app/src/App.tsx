@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import palData from "../db.json";
+import palData from "../src/db.json";
 import Controls from "./component/Controls";
 import Hand from "./component/Hand";
 import Status from "./component/Status";
@@ -284,8 +284,8 @@ const App: React.FC = () => {
         standEvent={stand}
         resetEvent={resetGame}
       />
-      <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
-      <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+      {/* <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
+      <Hand title={`Your Hand (${userScore})`} cards={userCards} /> */}
     </>
   );
 };
