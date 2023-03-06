@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import palData from "../db.json";
 import Controls from "./Controls";
 import Hand from "./Hand";
-
+import "./styles/game.css";
 import Status from "./Status";
 
 const GamePage: React.FC = () => {
@@ -278,7 +278,8 @@ const GamePage: React.FC = () => {
     }
   };
   return (
-    <div>
+    <>
+    <div >
       <Status message={message} balance={balance} />
       <Controls
         balance={balance}
@@ -292,6 +293,7 @@ const GamePage: React.FC = () => {
       <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
       <Hand title={`Your Hand (${userScore})`} cards={userCards} />
     </div>
+    </>
   );
 };
 
