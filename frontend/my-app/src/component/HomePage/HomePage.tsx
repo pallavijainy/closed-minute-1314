@@ -1,4 +1,4 @@
-import {Heading} from "@chakra-ui/react"
+import {Heading,Button,Center} from "@chakra-ui/react"
 import React from "react";
 import {Link} from "react-router-dom";
 import "./homepage.css"
@@ -25,6 +25,13 @@ const HomePage = () => {
   <Link to="/rules">
   <div className="play">
     <h2>How to play?</h2>
+   </div>
+   <div>
+    <Center>
+      <Link to="/leaderboard">
+    <Button  bgColor="blue" color="white" _hover={{color:"white", bgColor:"gray"}}>Leaderboard</Button>
+    </Link>
+    </Center>
    </div>
   </Link>
   </div>

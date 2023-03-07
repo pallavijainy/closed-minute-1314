@@ -1,11 +1,11 @@
 import React from "react";
 
 export default interface ProfileTypo{
-    _id:String;
-    name:String;
-    email:String;
-    password:String;
-    score:Number;
-    level:Number;
+    _id:string;
+    name:string;
+    email:string;
+    password:string;
+    score:number;
+    level:number;
 }
 

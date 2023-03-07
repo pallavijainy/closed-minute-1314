@@ -40,7 +40,7 @@ const navigate=useNavigate()
     }
     
 const handleSubmit=()=>{
-    fetch(`https://nice-cyan-pelican-garb.cyclic.app/user/login`,{
+    fetch(`https://nice-cyan-pelican-garb.cyclic.app/login`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -56,6 +56,7 @@ const handleSubmit=()=>{
             isClosable: true,
           })
           if(res.msg=="Login Successfull"){
+            localStorage.setItem("token",res.token)
             navigate("/game");
           }
          

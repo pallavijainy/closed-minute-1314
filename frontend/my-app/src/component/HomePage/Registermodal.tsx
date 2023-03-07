@@ -42,7 +42,7 @@ const navigate=useNavigate()
     console.log(input)
 
     const handleSubmit=()=>{
-        fetch(`https://nice-cyan-pelican-garb.cyclic.app/user/register`,{
+        fetch(`https://nice-cyan-pelican-garb.cyclic.app/register`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
