@@ -4,6 +4,18 @@ import Controls from "./Controls";
 import Hand from "./Hand";
 import "./styles/game.css";
 import Status from "./Status";
+import ProfileTypo from "../Constants/ProfileType";
+
+let User={
+  _id:"",
+  name:"",
+  email:"",
+  password:"",
+  score:0,
+  level:0
+
+}
+
 
 const GamePage: React.FC = () => {
   enum GameState {
@@ -38,7 +50,7 @@ const GamePage: React.FC = () => {
   const [userCards, setUserCards]: any[] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const [userCount, setUserCount] = useState(0);
-
+// console.log(userScore)
   //dealer
   const [dealerCards, setDealerCards]: any[] = useState([]);
   const [dealerScore, setDealerScore] = useState(0);
@@ -46,6 +58,7 @@ const GamePage: React.FC = () => {
 
   //balance
   const [balance, setBalance] = useState(1000);
+  const [user,setUser]=useState<ProfileTypo>(User)
 
   //bet
   const [bet, setBet] = useState(0);
@@ -59,6 +72,41 @@ const GamePage: React.FC = () => {
     standDisabled: false,
     resetDisabled: true,
   });
+
+  const getUser=()=>{
+    fetch("https://nice-cyan-pelican-garb.cyclic.app/user", {
+      method: "GET",
+      headers:requestHeaders,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setUser(res)
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  let requestHeaders: any = { 
+    'Content-Type': 'application/json',
+    "Authorization": localStorage.getItem("token")
+};
+  const updateLeaderboard=(val:number)=>{
+   
+    fetch(
+      `https://nice-cyan-pelican-garb.cyclic.app/user/update`,
+      {
+        method: "PATCH",
+        headers:requestHeaders,
+        body: JSON.stringify({ score:user.score+userScore,level:val}),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err.message));
+  
+  }
 
   //initial phase m cards dene k bad userturn
 
@@ -96,6 +144,11 @@ const GamePage: React.FC = () => {
       }
     }
   }, [dealerCount]);
+
+  useEffect(()=>{
+    getUser();
+  },[])
+  console.log(user)
 
   //bet place
 
@@ -267,6 +320,7 @@ const GamePage: React.FC = () => {
     if (userScore > dealerScore || dealerScore > 21) {
       setBalance(balance + 2 * bet);
       setMessage(Message.userWin);
+      updateLeaderboard(user.level+1);
       alert("You Won!");
     } else if (dealerScore > userScore) {
       setMessage(Message.dealerWin);
@@ -289,6 +343,8 @@ const GamePage: React.FC = () => {
         hitEvent={hit}
         standEvent={stand}
         resetEvent={resetGame}
+        userScore={userScore}
+        dealerScore={dealerScore}
       />
       <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
       <Hand title={`Your Hand (${userScore})`} cards={userCards} />

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles/Controls.module.css";
 
+
+
+
 type ControlsProps = {
   balance: number;
   gameState: number;
@@ -9,6 +12,8 @@ type ControlsProps = {
   hitEvent: any;
   standEvent: any;
   resetEvent: any;
+  userScore:any;
+  dealerScore:any;
 };
 
 const Controls: React.FC<ControlsProps> = ({
@@ -19,13 +24,19 @@ const Controls: React.FC<ControlsProps> = ({
   hitEvent,
   standEvent,
   resetEvent,
+  userScore,
+  dealerScore,
 }) => {
   const [amount, setAmount] = useState(10);
   const [inputStyle, setInputStyle] = useState(styles.input);
-
+  
+// console.log(userScore,dealerScore)
   useEffect(() => {
     validation();
+   
   }, [amount, balance]);
+
+
 
   const validation = () => {
     if (amount > balance) {
@@ -73,7 +84,7 @@ const Controls: React.FC<ControlsProps> = ({
       return (
         <div className={styles.controlsContainer}>
           <button
-            onClick={() => hitEvent()}
+            onClick={()=>hitEvent()}
             disabled={buttonState.hitDisabled}
             className={styles.button}
           >
