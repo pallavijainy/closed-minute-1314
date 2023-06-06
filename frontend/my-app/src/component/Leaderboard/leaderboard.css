@@ -1,0 +1,10 @@
+#cont{
+    background-image: url("https://media.istockphoto.com/id/172872767/photo/cards.jpg?s=612x612&w=0&k=20&c=1ZT3M7T0TwlDJ5V9b2ji7dtwEZ74NDPT9MJsfs1uPQI=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    opacity: 0.9;
+    /* height: 100vh; */
+    z-index: -1;
+}

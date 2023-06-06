@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import "./leaderboard.css"
 import {Box,
     TableContainer,
     Table,
@@ -9,6 +10,7 @@ import {Box,
     Td,
     Heading,
     Center
+   
 
 } from "@chakra-ui/react"
 
@@ -50,7 +52,8 @@ if(leaderboard.length===0){
     )
 }
   return (
-    <Center marginTop="50px">
+    <div id='cont'>
+    <Center >
      
         <Box
 
@@ -58,7 +61,8 @@ if(leaderboard.length===0){
             boxShadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"
 
           >
-             <Heading textAlign="center" padding="10px"> Leaderboard</Heading>
+             <Heading textAlign="center" padding="10px" color="skyblue" fontFamily="sans-serif"> Leaderboard</Heading>
+            
             <TableContainer overflowX={"auto"}>
               <Table
                 size={{ base: "xs", md: "md", lg: "lg" }}
@@ -98,16 +102,16 @@ if(leaderboard.length===0){
                   {leaderboard?.map((el,index) => {
                     return (
                       <Tr key={index}>
-                        <Td color={"gray.700"} fontWeight="semibold">
+                        <Td color={"orange"} fontWeight="semibold">
                           {index+1}
                         </Td>
-                        <Td color={"gray.700"} fontWeight="semibold">
+                        <Td color={"orange"} fontWeight="semibold">
                           {el.name}
                         </Td>
-                        <Td color={"gray.700"} fontWeight="semibold">
+                        <Td color={"orange"} fontWeight="semibold">
                           {el.score}
                         </Td>
-                        <Td color="blue.500" fontWeight="semibold">
+                        <Td color="red" fontWeight="semibold">
                           {el.level}
                         </Td>
                       </Tr>
@@ -118,6 +122,7 @@ if(leaderboard.length===0){
             </TableContainer>
           </Box>
     </Center>
+    </div>
   )
 }
 
