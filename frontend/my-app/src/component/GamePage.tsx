@@ -74,7 +74,7 @@ const GamePage: React.FC = () => {
   });
 
   const getUser=()=>{
-    fetch("https://nice-cyan-pelican-garb.cyclic.app/user", {
+    fetch("https://crazy-tan-ray.cyclic.app/user", {
       method: "GET",
       headers:requestHeaders,
     })
@@ -93,7 +93,7 @@ const GamePage: React.FC = () => {
   const updateLeaderboard=(val:number)=>{
    
     fetch(
-      `https://nice-cyan-pelican-garb.cyclic.app/user/update`,
+      `https://crazy-tan-ray.cyclic.app/user/update`,
       {
         method: "PATCH",
         headers:requestHeaders,

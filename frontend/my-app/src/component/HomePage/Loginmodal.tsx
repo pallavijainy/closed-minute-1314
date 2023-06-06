@@ -40,7 +40,7 @@ const navigate=useNavigate()
     }
     
 const handleSubmit=()=>{
-    fetch(`https://nice-cyan-pelican-garb.cyclic.app/login`,{
+    fetch(`https://crazy-tan-ray.cyclic.app/login`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
