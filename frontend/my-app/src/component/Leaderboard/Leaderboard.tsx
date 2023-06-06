@@ -50,11 +50,15 @@ if(leaderboard.length===0){
     )
 }
   return (
-    <Center>
+    <Center marginTop="50px">
+     
         <Box
+
             w={{ base: "full", lg: "70%" }}
             boxShadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"
+
           >
+             <Heading textAlign="center" padding="10px"> Leaderboard</Heading>
             <TableContainer overflowX={"auto"}>
               <Table
                 size={{ base: "xs", md: "md", lg: "lg" }}
@@ -101,10 +105,10 @@ if(leaderboard.length===0){
                           {el.name}
                         </Td>
                         <Td color={"gray.700"} fontWeight="semibold">
-                          {el.score.toString()}
+                          {el.score}
                         </Td>
                         <Td color="blue.500" fontWeight="semibold">
-                          {el.level.toString()}
+                          {el.level}
                         </Td>
                       </Tr>
                     );

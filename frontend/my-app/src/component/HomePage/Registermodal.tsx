@@ -42,7 +42,7 @@ const navigate=useNavigate()
     console.log(input)
 
     const handleSubmit=()=>{
-        fetch(`https://crazy-tan-ray.cyclic.app/user/register`,{
+        fetch(`https://crazy-tan-ray.cyclic.app/register`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

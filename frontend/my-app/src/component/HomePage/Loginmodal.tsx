@@ -40,7 +40,7 @@ const navigate=useNavigate()
     }
     
 const handleSubmit=()=>{
-    fetch(`https://crazy-tan-ray.cyclic.app/user/login`,{
+    fetch(`https://crazy-tan-ray.cyclic.app/login`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -55,7 +55,8 @@ const handleSubmit=()=>{
             duration: 2000,
             isClosable: true,
           })
-          if(res.msg==="Login Successfull"){
+          if(res.msg=="Login Successfull"){
+            localStorage.setItem("token",res.token)
             navigate("/game");
           }
          
