@@ -40,7 +40,7 @@ const navigate=useNavigate()
     }
     
 const handleSubmit=()=>{
-    fetch(`https://nice-cyan-pelican-garb.cyclic.app/user/login`,{
+    fetch(`https://crazy-tan-ray.cyclic.app/user/login`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -55,7 +55,7 @@ const handleSubmit=()=>{
             duration: 2000,
             isClosable: true,
           })
-          if(res.msg=="Login Successfull"){
+          if(res.msg==="Login Successfull"){
             navigate("/game");
           }
          

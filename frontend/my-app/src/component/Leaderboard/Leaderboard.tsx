@@ -24,7 +24,7 @@ const Leaderboard = () => {
     };
 
     const getLeaderboard = () => {
-        fetch("https://nice-cyan-pelican-garb.cyclic.app/user/leaderboard", {
+        fetch("https://crazy-tan-ray.cyclic.app/user/leaderboard", {
           method: "GET",
           headers:requestHeaders,
         })
